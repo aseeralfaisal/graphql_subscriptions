@@ -2,7 +2,7 @@
 
 This example demonstrates a basic subscription operation in Apollo Server. [See the docs on subscriptions](https://www.apollographql.com/docs/apollo-server/data/subscriptions/)
 
-<h1>Index.js<h1/>
+<h5>Index.js<h5/>
 ```index.js
 const { createServer } = require("http");
 const express = require("express");
