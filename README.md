@@ -2,6 +2,7 @@
 
 This example demonstrates a basic subscription operation in Apollo Server. [See the docs on subscriptions](https://www.apollographql.com/docs/apollo-server/data/subscriptions/)
 
+<h1>Index.js<h1/>
 ```index.js
 const { createServer } = require("http");
 const express = require("express");
@@ -32,7 +33,7 @@ const resolvers = require("./resolvers");
 })();
 
 ```
-
+<h1>resolvers.js</h1>
 ```resolvers.js
 const { PubSub } = require("graphql-subscriptions");
 const pubsub = new PubSub();
@@ -59,6 +60,7 @@ const resolvers = {
 }
 module.exports = resolvers
 ```
+<h1>schema.js</h1>
 ```schema.js
 const { gql } = require("apollo-server-express");
 
