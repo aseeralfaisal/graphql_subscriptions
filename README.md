@@ -6,7 +6,7 @@ A function that takes user input returns an array of names. A graphql subscripti
 
 ```graphql
 subscription {
-  numberIncremented
+  newName
 }
 
 query Query {
