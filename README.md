@@ -1,6 +1,4 @@
-# Subscriptions in Apollo Server v3
-
-This example demonstrates a basic subscription operation in Apollo Server. [See the docs on subscriptions](https://www.apollographql.com/docs/apollo-server/data/subscriptions/)
+# A simple program to test GraphQL Subscriptions aka Websocket implementation in Apollo Express Server v3
 
 ```index.js
 const { createServer } = require("http");
