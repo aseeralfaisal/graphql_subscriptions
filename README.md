@@ -4,8 +4,7 @@ This example demonstrates a basic subscription operation in Apollo Server. [See 
 
 A function that takes user input returns an array of names. A graphql subscription .i.e. websocket was implemented
 
-```
-//index.js
+```index.js
 const { createServer } = require("http");
 const express = require("express");
 const { execute, subscribe } = require("graphql");
@@ -36,7 +35,50 @@ const resolvers = require("./resolvers");
 
 ```
 
-```graphql
+```resolvers.js
+const { PubSub } = require("graphql-subscriptions");
+const pubsub = new PubSub();
+
+const names = ['aseer, saad, faisal']
+const resolvers = {
+    Query: {
+        name() {
+            return names;
+        },
+    },
+    Mutation: {
+        addName(parent, { name }, context) {
+            pubsub.publish('newName', { newName: name })
+            names.push(name)
+            return names
+        }
+    },
+    Subscription: {
+        newName: {
+            subscribe: () => pubsub.asyncIterator(['newName'])
+        },
+    },
+}
+module.exports = resolvers
+```
+```schema.js
+const { gql } = require("apollo-server-express");
+
+const typeDefs = gql`
+type Query {
+  name: [String]!
+}
+type Mutation {
+  addName(name: String!): [String]!
+}
+type Subscription {
+  newName: String!  
+}
+`;
+module.exports = typeDefs
+```
+
+```graphql query
 subscription {
   newName
 }
@@ -45,8 +87,8 @@ query Query {
   name
 }
 
-mutation Mutation($name: String!) {
-  addName(name: $name)
+mutation {
+  addName("aseer")
 }
 ```
 
